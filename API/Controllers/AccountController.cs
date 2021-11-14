@@ -44,7 +44,7 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
              var user=await _context.Users
              .SingleOrDefaultAsync(x =>x.Username==loginDto.UserName.ToLower());
@@ -57,7 +57,10 @@ namespace API.Controllers
                  
              }
 
-              return user;
+              return new UserDto{
+                Username=user.Username,
+                Token=_tokenService.CreateToken(user)
+            };
              
         }
     
