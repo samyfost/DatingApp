@@ -33,12 +33,13 @@ namespace API.Controllers
             _userRepository = userRepository;
             
         }
+
 [HttpGet]
 
 public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
 {
     var user=await _userRepository.GetUserByUsernameAsync(User.GetUsername());
-    userParams.CurrentUsername=user.Username;
+    userParams.CurrentUsername=user.UserName;
     if(string.IsNullOrEmpty(userParams.Gender))
     {
         userParams.Gender=user.Gender=="male" ? "female" : "male";
@@ -100,7 +101,7 @@ public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
     {
         //return CreatedAtRoute("GetUser",_mapper.Map<PhotoDto>(photo));
 
-        return CreatedAtRoute("GetUser",new {Username=user.Username},_mapper.Map<PhotoDto>(photo));
+        return CreatedAtRoute("GetUser",new {Username=user.UserName},_mapper.Map<PhotoDto>(photo));
     }
 
     return BadRequest("Problem adding photo");
