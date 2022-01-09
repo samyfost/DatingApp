@@ -28,6 +28,7 @@
             <div class="card-footer"><div class="btn-group d-flex">
                 <button class="btn btn-primary">Like</button>
                 <button (click)="selectTab(3)" class="btn btn-success">Message</button>
+                <button class="report">Report</button>
             </div></div>
         </div>
     </div>
@@ -50,6 +51,11 @@
         </tab>
         <tab heading='Messages' (selectTab)="onTabActivated($event)">
             <app-member-messages [username]="member.username" ></app-member-messages>
+        </tab>
+        <tab heading='Interests' (selectTab)="onTabActivated($event)">
+            <h4>Reservations</h4>
+            <p>{{member.interests}}</p>
+            
         </tab>
     </tabset>
 </div>

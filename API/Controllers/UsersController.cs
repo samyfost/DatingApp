@@ -54,7 +54,8 @@ public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] Use
 [HttpGet("{username}",Name ="GetUser")]
 public async Task<ActionResult<MemberDto>> GetUser(string username)
 {
-    return await _unitOfWork.UserRepository.GetMemberAsync(username);
+    var currentUsername = User.GetUsername();
+    return await _unitOfWork.UserRepository.GetMemberAsync(username, isCurrentUser: currentUsername == username);
     
 }
 
@@ -90,10 +91,6 @@ public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         PublicId=result.PublicId
     };
 
-    if(user.Photos.Count==0)
-    {
-        photo.IsMain=true;
-    }
     user.Photos.Add(photo);
 
     if(await _unitOfWork.Complete())
