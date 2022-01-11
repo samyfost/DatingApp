@@ -6,3 +6,7 @@ img {
     border: 2px solid white;
     display: inline;
 }
+.klasa{
+    width: 100%;
+    background-color: brown;
+}

@@ -12,3 +12,10 @@
     background-color: aliceblue;
     border-top: none;
 }
+.col-8 textarea,input{
+color: black;
+border: black 3px;
+}
+.mt-2,label{
+    margin-left: 30px;
+}

@@ -42,6 +42,7 @@ namespace API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                //c.SwaggerDoc("v1", new Info { Title = "PUT YOUR NAME HERE", Version = "v1" });
             });
             services.AddCors();
            services.AddIdentityServices(_config);
