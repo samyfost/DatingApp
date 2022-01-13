@@ -1,10 +1,10 @@
-<div class="modal-header">
+<div class="modal-header" style="background-color: rgba(255, 255, 255, 0.644); color: black;">
         <h4 class="modal-title pull-left">Edit roles for {{user.username}}</h4>
         <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
           <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color: rgba(255, 255, 255, 0.671); color: black;">
         <form #rolesForm="ngForm" id="rolesForm">
             <div class="form-check" *ngFor="let role of roles">
                 <input type="checkbox" class="form-check-input"
@@ -16,8 +16,8 @@
             </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
-        <button type="button" class="btn btn-default" (click)="updateRoles()">Update</button>  
+      <div class="modal-footer" style="background-color: rgba(255, 255, 255, 0.603); color: black;">
+        <button type="button" class="btn btn-default" style="background-color: rgb(168, 17, 42); color: white;"   (click)="bsModalRef.hide()">Cancel</button>
+        <button type="button" class="btn btn-default" style="background-color: rgb(39, 31, 155); color: white;" (click)="updateRoles()">Update</button>  
     </div>
     
