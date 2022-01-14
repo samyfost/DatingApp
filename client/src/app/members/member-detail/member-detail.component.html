@@ -28,7 +28,8 @@
             <div class="card-footer"><div class="btn-group d-flex">
                 <button class="btn btn-primary">Like</button>
                 <button (click)="selectTab(3)" class="btn btn-success">Message</button>
-                <button class="btn btn-danger" style="background-color: rgba(206, 9, 9, 0.829); color: white; border: none;">Report</button>
+                <button class="btn btn-danger" (click)="addReport(member)"
+                style="background-color: rgba(206, 9, 9, 0.829); color: white; border: none;">Report</button>
             </div></div>
         </div>
     </div>
@@ -54,7 +55,9 @@
         </tab>
         <tab heading='Reservations' (selectTab)="onTabActivated($event)">
             <h4>Reservations</h4>
-            <p>{{member.interests}}</p>
+            <p>You want to go on a date ?</p>
+            <p>Pick a date </p>
+            <p>Pick a restaurant </p> <option value="rest 1"></option>
             
             
         </tab>

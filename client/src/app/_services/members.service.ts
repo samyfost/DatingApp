@@ -100,5 +100,14 @@ resetUserParams(){
     params=params.append('predicate',predicate);
     return getPaginatedResult<Partial<Member[]>>(this.baseUrl+'likes',params,this.http);
   }
+  addReport(username: string) {
+   return this.http.post(this.baseUrl+ 'reports/' + username,{})
+  }
+  //getReports(predicate: string, pageNumber,pageSize)
+  //{
+  //  let params = getPaginationHeaders (pageNumber,pageSize)
+  //  params = params.append('predicate',predicate);
+  //  return getPaginatedResult<Partial<Member[]>>(this.baseUrl+ 'reports', params, this.http);
+ // }
 
 }

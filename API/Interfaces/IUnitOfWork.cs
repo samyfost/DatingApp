@@ -9,6 +9,7 @@ namespace API.Interfaces
     {
       IUserRepository UserRepository {get; }
       IMessageRepository MessageRepository {get; }
+      IReportsRepository ReportsRepository {get; }
 
 
       ILikesRepository LikesRepository {get; }

@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Member } from '../_models/member';
 import { Photo } from '../_models/photo';
 import { User } from '../_models/user';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +23,13 @@ export class AdminService {
    {
      return this.http.post(this.baseUrl + 'admin/edit-roles/' + username + '?roles=' + roles, {});
    }
-
-   getPhotosForApproval(){
-     return this.http.get<Photo[]>(this.baseUrl + 'admin/photos-to-moderate');
-   }
-   approvePhoto(photoId: number){
-     return this.http.post(this.baseUrl + 'admin/approve-photo/' + photoId , {});
-   }
-   rejectPhoto(photoId: number){
-     return this.http.post(this.baseUrl + 'admin/reject-photo/' + photoId, {});
-   }
+   addReport(username: string) {
+    return this.http.post(this.baseUrl+ 'reports/' + username,{})
+  }
+  getReports(predicate: string, pageNumber,pageSize)
+  {
+    let params = getPaginationHeaders (pageNumber,pageSize)
+    params = params.append('predicate',predicate);
+    return getPaginatedResult<Partial<Member[]>>(this.baseUrl+ 'reports', params, this.http);
+  }
 }

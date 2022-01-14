@@ -25,6 +25,8 @@ namespace API.Data
         public DbSet<Group> Groups {get; set;}
         public DbSet<Photo> Photos {get; set;}
         public DbSet<Connection> Connections {get; set;}
+        public DbSet<UserReport> Reports { get; set; } 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -68,6 +70,21 @@ namespace API.Data
             .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Photo>();
+
+            builder.Entity<UserReport>()
+            .HasKey(k=>new{k.SourceUserId,k.ReportedUserId});
+
+            builder.Entity<UserReport>()
+            .HasOne(s=>s.SourceUser)
+            .WithMany(r =>r.ReportedUsers)
+            .HasForeignKey(s =>s.SourceUserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<UserReport>()
+            .HasOne(r=>r.ReportedUser)
+            .WithMany(r =>r.ReportedByUsers)
+            .HasForeignKey(r =>r.ReportedUserId)
+            .OnDelete(DeleteBehavior.Cascade);
             
 
             builder.ApplyUtcDateTimeConverter();

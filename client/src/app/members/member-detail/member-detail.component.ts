@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
@@ -26,7 +27,8 @@ export class MemberDetailComponent implements OnInit , OnDestroy {
   messages: Message[]=[];
   user: User;
 
-  constructor(public presence: PresenceService,private route:ActivatedRoute,private messageService: MessageService,private accountService:AccountService) { 
+  constructor(public presence: PresenceService,private route:ActivatedRoute,private messageService: MessageService,private accountService:AccountService,
+    private memberService:MembersService,private toastr: ToastrService) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe(user =>this.user=user);
   }
   
@@ -94,6 +96,13 @@ export class MemberDetailComponent implements OnInit , OnDestroy {
 
   ngOnDestroy(): void {
     this.messageService.stopHubConnection();
+  }
+  addReport(member: Member)
+  {
+    this.memberService.addReport(member.username).subscribe(()=>
+    {
+      this.toastr.success('You have reported '+ member.knownAs);
+    })
   }
 
 }
