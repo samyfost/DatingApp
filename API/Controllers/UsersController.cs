@@ -63,7 +63,7 @@ public async Task<ActionResult<MemberDto>> GetUser(string username)
 public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
 {
     var username=User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    var user=await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+    var user=await _unitOfWork.UserRepository.GetUserByIdAsync(int.Parse(username));
 
     _mapper.Map(memberUpdateDto,user);
 

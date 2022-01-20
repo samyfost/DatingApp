@@ -3,11 +3,12 @@
         <tr>
             <th style="width: 30%;">Username</th>
             
-            <th style="width: 30%;"></th>
+            <th style="width: 30%;">Reported By</th>
         </tr>
-        <tr *ngFor="let member of members">
-            <td>{{member.username}}</td>
-            <td><button class="btn btn-primary" style="background-color:rgb(216, 17, 126); color: white; width: 140px;">Delete</button></td>
+        <tr>
+            <th>todd</th>
+            <th>sofia</th>
+            <td><button (click)="deleteReport()" class="btn btn-primary" style="background-color:rgb(216, 17, 126); color: white; width: 140px;">Delete</button></td>
         </tr>
     </table>
 </div>

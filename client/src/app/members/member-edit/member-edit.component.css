@@ -14,7 +14,9 @@
 }
 .col-8 textarea,input{
 color: black;
-border: black 3px;
+border: black 2px solid;
+margin: 0 10px 0 20px;
+width: 95%;
 }
 .mt-2,label{
     margin-left: 30px;

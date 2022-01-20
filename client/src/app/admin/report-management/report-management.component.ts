@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Member } from 'src/app/_models/member';
 import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/user';
@@ -17,7 +19,7 @@ export class ReportManagementComponent implements OnInit {
   pageSize=5;
   pagination: Pagination;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService,private toastr: ToastrService,private router:Router) { }
 
   ngOnInit(): void {
 this.loadReports();
@@ -36,6 +38,15 @@ this.loadReports();
   {
     this.pageNumber=event.page;
     this.loadReports();
+  }
+  deleteReport()
+  {
+    this.toastr.success('You have deleted the report!');
+    setTimeout(() => {
+      this.router.navigate(["/members"]);
+    }, 2000);
+
+  
   }
 
 }

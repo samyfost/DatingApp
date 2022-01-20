@@ -25,12 +25,12 @@
                     <p>{{member.created | date:'dd MMM YYYY'}}</p>
                 </div>
             </div>
-            <div class="card-footer"><div class="btn-group d-flex">
+            <div class="btn-group d-flex" style="margin-top: 20px; margin-bottom: 20px;">
                 <button class="btn btn-primary">Like</button>
                 <button (click)="selectTab(3)" class="btn btn-success">Message</button>
                 <button class="btn btn-danger" (click)="addReport(member)"
                 style="background-color: rgba(206, 9, 9, 0.829); color: white; border: none;">Report</button>
-            </div></div>
+            </div>
         </div>
     </div>
 <div class="col-8">
@@ -54,11 +54,31 @@
             <app-member-messages [username]="member.username" ></app-member-messages>
         </tab>
         <tab heading='Reservations' (selectTab)="onTabActivated($event)">
-            <h4>Reservations</h4>
-            <p>You want to go on a date ?</p>
-            <p>Pick a date </p>
-            <p>Pick a restaurant </p> <option value="rest 1"></option>
-            
+    <h4 style="color: rgb(7, 7, 68);">You want to go on a date with {{member.knownAs}} ?</h4>
+    <label for="dateOfMeet" style="margin-left: 20px;">Pick a date</label>
+    <div class="form-group" style="margin-left: 20px; background-color: rgb(255, 0, 119, 0.808); width: 90%; border-radius: 5px;">
+    <input id="dateOfMeet" name="dateOfMeet" [(ngModel)]="dateOfMeet"
+    type="text" bsDatepicker [bsConfig]="datePickerConfig" class="form-control">
+    </div>
+
+    <label style="margin-left: 20px;">Pick a restaurant</label>
+    <select class="form-select" id="state" required="" style="margin-left: 20px; background-color: rgba(255, 0, 119, 0.808); width: 90%; color: white;">
+    <option value="" style="color: white;">Choose...</option>
+    <option style="color: white;">Prestige</option>
+    <option style="color: white;">Nusr-Et</option>
+    <option style="color: white;">Zdrava voda</option>
+    <option style="color: white;">Garden city Konjic</option>
+
+
+    </select>
+
+    <label style="margin-left: 20px; margin-top: 5px;">Any special wishes: </label>
+
+    <textarea class="form-control" id="textAreaExample1" rows="4" style="margin-left: 20px; background-color: rgb(255, 0, 119, 0.808); width: 90%;">Type here...</textarea>
+
+    <button type="button" class="btn btn-success" (click)="makeReservation()" style="margin-left: 22px; margin-top: 10px;">Make a reservation</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()" type="button" style="margin-left: 10px; margin-top: 10px; background-color: rgba(206, 9, 9, 0.829);">Cancel</button>
+              
             
         </tab>
     </tabset>

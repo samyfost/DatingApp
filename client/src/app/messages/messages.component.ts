@@ -3,6 +3,7 @@ import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
 import { ConfirmService } from '../_services/confirm.service';
 import { MessageService } from '../_services/message.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-messages',
@@ -17,7 +18,7 @@ export class MessagesComponent implements OnInit {
   pageSize=5;
   loading=false;
 
-  constructor(private messageService: MessageService , private confirmService: ConfirmService) { }
+  constructor(private messageService: MessageService , private confirmService: ConfirmService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -33,17 +34,29 @@ export class MessagesComponent implements OnInit {
       this.loading=false;
     })
   }
+  // deleteMessage(id: number){
+  //   this.confirmService.confirm('Confirm delete message', 'This can not be undone').subscribe(result =>{
+  //     if(result){
+  //       this.messageService.deleteMessage(id).subscribe(()=>
+  //       {
+  //         this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+  //         this.toastr.success('Message deleted successfully');
+  //       })
+  //     }
+  //   })
+    
+  // }
   deleteMessage(id: number){
-    this.confirmService.confirm('Confirm delete message', 'This cant be undone').subscribe(result =>{
-      if(result){
+    
         this.messageService.deleteMessage(id).subscribe(()=>
         {
           this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+          this.toastr.success('Message deleted successfully');
         })
       }
-    })
     
-  }
+    
+  
   pageChanged(event: any)
   {
     if(this.pageNumber !== event.page){

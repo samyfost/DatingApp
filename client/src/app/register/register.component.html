@@ -1,5 +1,5 @@
 <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
-    <h2 class="text-center text-primary">Sign up</h2>
+    <h2 class="text-center" style="color: white;">Sign up</h2>
     <hr>
     <div class="form-group">
         <label class="control-label" style="margin-right: 10px;">I am a </label>
@@ -10,7 +10,7 @@
             <input type="radio" value="female" formControlName='gender' class="ml-3">Female
         </label>
     </div>
-    <app-text-input [formControl]='registerForm.controls["username"]' 
+    <app-text-input [formControl]='registerForm.controls["username"]'
     [label]='"Username"'></app-text-input>
     <app-text-input [formControl]='registerForm.controls["knownAs"]' 
     [label]='"Known As"'></app-text-input>
@@ -34,8 +34,8 @@
         </ul>
     </div>
     <div class="form-grup text-center">
-        <button [disabled]="!registerForm.valid" class="btn btn-success mr-2" type="submit">Register</button>
-        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success mr-2 mt-2" type="submit">Register</button>
+        <button class="btn btn-danger mr-2 mt-2" style="background-color: rgb(160, 28, 28);" (click)="cancel()" type="button">Cancel</button>
     </div>
 </form>
 

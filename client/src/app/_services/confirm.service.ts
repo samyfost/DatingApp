@@ -33,6 +33,11 @@ export class ConfirmService {
         observer.next(this.bsModelRef.content.result);
         observer.complete();
       });
+      return {
+        unsubscribe() {
+          subscription.unsubscribe();
+        }
+      }
     }
   }
 
